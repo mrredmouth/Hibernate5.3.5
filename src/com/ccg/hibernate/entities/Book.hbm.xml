@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+		"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+		"http://www.hibernate.org/dtd/hibernate-mapping.dtd">
+<hibernate-mapping package="com.ccg.hibernate.entities">
+	<class name="Book" table="SH_BOOK">
+		<!-- 配置二级缓存，每个session都可以用 -->
+		<cache usage="read-only"/>
+		<!-- 主键 -->
+		<id name="id" type="java.lang.Integer">
+			<column name="ID"></column>
+			<generator class="native"></generator>
+		</id>
+		<property name="bookName" type="java.lang.String">
+			<column name="BOOK_NAME"></column>
+		</property>
+		<property name="isbn" type="java.lang.String">
+			<column name="ISBN"></column>
+		</property>
+		<property name="price" type="int">
+			<column name="PRICE"></column>
+		</property>
+		<!-- 两种property属性写法，一样 -->
+		<property name="stock" column="STOCK" type="int"></property>
+		<!-- 多对一关系：多个书对应一种类型 
+			生成sql语句：创建foreign key (TYPE_ID) references SH_BOOK_TYPE -->
+		<many-to-one name="bookType" column="TYPE_ID" class="BookType"></many-to-one>
+	</class>
+</hibernate-mapping>

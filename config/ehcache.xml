@@ -1,0 +1,49 @@
+<ehcache>
+
+    <!--  设置创建缓存数据文件的目录的路径。 
+			path属性有以下路径：
+        		 user.home -  用户家庭主页 
+        		 user.dir - 用户的当前工作目录
+         		 java.io.tmpdir - 默认的临时文件路径 -->
+    <diskStore path="java.io.tmpdir"/>
+    <!--默认缓存配置：.hbm.xml中配置了缓存，此文件没找到对应的类的缓存配置，则用此默认缓存 -->
+    <defaultCache
+        maxElementsInMemory="10000"
+        eternal="false"
+        timeToIdleSeconds="120"
+        timeToLiveSeconds="120"
+        overflowToDisk="true"
+        />
+
+    <!-- 缓存示例sampleCache1:
+        timeToIdleSeconds="300":闲置时间上限300s，即5min；只适用于非永恒情况
+        timeToLiveSeconds="600"：生存时间上限600s,即10min；只适用于非永恒情况
+        overflowToDisk="true";超过10000个元素就溢出到磁盘 -->
+    <cache name="sampleCache1"
+        maxElementsInMemory="10000"
+        eternal="false"
+        timeToIdleSeconds="300"
+        timeToLiveSeconds="600"
+        overflowToDisk="true"
+        />
+
+    <!-- 缓存示例sampleCache2：
+    		maxElementsInMemory:最大包含1000个元素；
+        	eternal="true": 元素将永远保存在内存中,没有过期。 -->
+    <cache name="sampleCache2"
+        maxElementsInMemory="1000"
+        eternal="true"
+        timeToIdleSeconds="0"
+        timeToLiveSeconds="0"
+        overflowToDisk="false"
+        />
+
+    <!-- 配置自己的缓存：-->
+    <cache name="com.ccg.hibernate.entities.Book"
+        maxElementsInMemory="1000"
+        eternal="false"
+        timeToIdleSeconds="1200"
+        timeToLiveSeconds="1200"
+        overflowToDisk="false"
+        />
+</ehcache>

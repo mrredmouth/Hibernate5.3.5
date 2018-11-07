@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+		"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+		"http://www.hibernate.org/dtd/hibernate-mapping.dtd">
+<hibernate-mapping package="com.ccg.hibernate.entities">
+	<!-- 1、class的name：类名全路径，如果上面的package写全了，则此处的name可以直接写类名
+		 2、class的table：类对应的数据库表名 -->
+	<class name="User" table="USER_TEST">
+		<id name="userCode" type="java.lang.Integer" column="USER_CODE">
+			<!-- 生成id的方式：自增主键，oracle中会生成对应的序列，从1开始自增 -->
+			<generator class="native"></generator>
+		</id>
+		<property name="userName" type="java.lang.String" column="USER_NAME"></property>
+		<property name="password" type="java.lang.String" column="PASSWORD"></property>
+		<property name="email" type="java.lang.String" column="EMAIL"></property>
+		<property name="phoneNumber" type="java.lang.Long" column="PHONE_NUMBER"></property>
+	</class>
+</hibernate-mapping>
